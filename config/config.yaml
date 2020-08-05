@@ -1,0 +1,32 @@
+# Settings for Bolt Article
+
+# All options: html, format, bold, italic, deleted, lists, link, file, line, redo, undo, underline, ol, ul, indent, outdent, sup, sub
+default:
+  buttons: [ bold, italic, format, lists, link, html, image ]
+  plugins: [ fullscreen, table, inlinestyle, video, widget ]
+  source: true
+
+plugins:
+  alignment: [ alignment/alignment.js ]
+  beyondgrammar: [ beyondgrammar/beyondgrammar.js ]
+  clips: [ clips/clips.js, clips/clips.css ]
+  counter: [ counter/counter.js ]
+  definedlinks: [ definedlinks/definedlinks.js ]
+  filemanager: [ filemanager/filemanager.js, filemanager/filemanager.css ]
+  fontcolor: [ fontcolor/fontcolor.js ]
+  fontfamily: [ fontfamily/fontfamily.js ]
+  fontsize: [ fontsize/fontsize.js ]
+  fullscreen: [ fullscreen/fullscreen.js ]
+  handle: [ handle/handle.js, handle/handle.css ]
+  imagemanager: [ imagemanager/imagemanager.js ]
+  inlinestyle: [ inlinestyle/inlinestyle.js, inlinestyle/inlinestyle.js ]
+  limiter: [ limiter/limiter.js ]
+  pagebreak: [ pagebreak/pagebreak.js, pagebreak/pagebreak.css ]
+  properties: [ properties/properties.js ]
+  specialchars: [ specialchars/specialchars.js ]
+  table: [ table/table.js ]
+  textdirection: [ textdirection/textdirection.js ]
+  textexpander: [ textexpander/textexpander.js ]
+  variable: [ variable/variable.js, variable/variable.css ]
+  video: [ video/video.js ]
+  widget: [ widget/widget.js ]

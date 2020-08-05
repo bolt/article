@@ -1,0 +1,39 @@
+{# todo: Use `asset`, but make sure the packages are set on POST, otherwise it'll break
+<script src="{{ asset('assets/article/article.js', 'public') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/article/article.css', 'public') }}">
+--- #}
+
+<script src="/assets/article/article.min.js"></script>
+<link rel="stylesheet" href="/assets/article/article.min.css">
+{{ additional_includes|raw }}
+<script>
+
+$R.options = {
+    callbacks: {
+        image: {
+            uploadError: function(response)
+            {
+                alert(response.message);
+            }
+        },
+        file: {
+            uploadError: function(response)
+            {
+                alert(response.message);
+            }
+        }
+    }
+};
+
+$R('.article-field', {{ article_settings() }});
+
+</script>
+<style>
+    .article-source, .article-styles {
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    }
+    .article-styles img {
+        max-width: 50%;
+    }
+</style>
+
