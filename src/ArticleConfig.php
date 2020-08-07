@@ -44,14 +44,7 @@ class ArticleConfig
             ],
             'minHeight' => '200px',
             'maxHeight' => '700px',
-            'structure' => true,
-            'pasteClean' => true,
-            'source' => [
-                'codemirror' => [
-                    'lineNumbers' => true,
-                ],
-            ],
-            'buttonsTextLabeled' => false,
+            'css' => '/assets/article/css/',
         ];
     }
 }

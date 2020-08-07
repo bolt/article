@@ -45,10 +45,10 @@ class ArticleInjectorWidget extends BaseWidget implements TwigAwareInterface
 
             foreach ($plugins->get($item) as $file) {
                 if (Path::getExtension($file) === 'css') {
-                    $output .= sprintf('<link rel="stylesheet" href="/assets/article/_plugins/%s">', $file);
+                    $output .= sprintf('<link rel="stylesheet" href="/assets/article/plugins/%s">', $file);
                 }
                 if (Path::getExtension($file) === 'js') {
-                    $output .= sprintf('<script src="/assets/article/_plugins/%s"></script>', $file);
+                    $output .= sprintf('<script src="/assets/article/plugins/%s"></script>', $file);
                 }
             }
         }
