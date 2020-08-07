@@ -3,29 +3,33 @@
 <link rel="stylesheet" href="{{ asset('assets/article/article.css', 'public') }}">
 --- #}
 
-<script src="/assets/article/article.min.js"></script>
-<link rel="stylesheet" href="/assets/article/article.min.css">
-{{ additional_includes|raw }}
+<script src="/assets/article/article-editor.min.js"></script>
+<link rel="stylesheet" href="/assets/article/css/article-editor.min.css">
+{#{{ additional_includes|raw }}#}
 <script>
 
-$R.options = {
-    callbacks: {
-        image: {
-            uploadError: function(response)
-            {
-                alert(response.message);
-            }
-        },
-        file: {
-            uploadError: function(response)
-            {
-                alert(response.message);
-            }
-        }
-    }
-};
+// $R.options = {
+//     callbacks: {
+//         image: {
+//             uploadError: function(response)
+//             {
+//                 alert(response.message);
+//             }
+//         },
+//         file: {
+//             uploadError: function(response)
+//             {
+//                 alert(response.message);
+//             }
+//         }
+//     }
+// };
 
-$R('.article-field', {{ article_settings() }});
+{#$R('.article-field', {{ article_settings() }});#}
+
+ArticleEditor('.article-field', {
+    css: '/assets/article/css/'
+});
 
 </script>
 <style>
