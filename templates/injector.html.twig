@@ -10,22 +10,22 @@
 {{ additional_includes|raw }}
 <script>
 
-// $R.options = {
-//     callbacks: {
-//         image: {
-//             uploadError: function(response)
-//             {
-//                 alert(response.message);
-//             }
-//         },
-//         file: {
-//             uploadError: function(response)
-//             {
-//                 alert(response.message);
-//             }
-//         }
-//     }
-// };
+ArticleEditor.settings = {
+    callbacks: {
+        image: {
+            uploadError: function(response)
+            {
+                alert(response.message);
+            }
+        },
+        file: {
+            uploadError: function(response)
+            {
+                alert(response.message);
+            }
+        }
+    }
+};
 
 
 ArticleEditor('.article-field', {{ article_settings() }});
