@@ -7,7 +7,6 @@ namespace Bolt\Article\Controller;
 use Bolt\Configuration\Config;
 use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
-use Bolt\Twig\TextExtension;
 use Bolt\Utils\ThumbnailHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
@@ -31,20 +30,16 @@ class Images implements AsyncZoneInterface
     /** @var Config */
     private $config;
 
-    /** @var TextExtension */
-    private $textExtension;
-
     /** @var Request */
     private $request;
 
     /** @var ThumbnailHelper */
     private $thumbnailHelper;
 
-    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, TextExtension $textExtension, RequestStack $requestStack, UrlGeneratorInterface $urlGenerator, ThumbnailHelper $thumbnailHelper)
+    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, RequestStack $requestStack, UrlGeneratorInterface $urlGenerator, ThumbnailHelper $thumbnailHelper)
     {
         $this->config = $config;
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->textExtension = $textExtension;
         $this->request = $requestStack->getCurrentRequest();
         $this->thumbnailHelper = $thumbnailHelper;
     }
