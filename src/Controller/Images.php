@@ -9,10 +9,7 @@ use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
 use Bolt\Twig\TextExtension;
 use Bolt\Utils\ThumbnailHelper;
-use Cocur\Slugify\Slugify;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sirius\Upload\Handler;
-use Sirius\Upload\Result\File;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +20,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Tightenco\Collect\Support\Collection;
-use Webmozart\PathUtil\Path;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -84,7 +80,6 @@ class Images implements AsyncZoneInterface
         $files = [];
 
         foreach ($this->findFiles($path, $glob) as $file) {
-
             // @todo Make the size of the images configurable
 
             $files[] = [

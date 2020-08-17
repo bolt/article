@@ -3,11 +3,9 @@
 <link rel="stylesheet" href="{{ asset('assets/article/article.css', 'public') }}">
 --- #}
 
-{% dump(article_settings()) %}
-
 <script src="/assets/article/article-editor.min.js"></script>
 <link rel="stylesheet" href="/assets/article/css/article-editor.min.css">
-{{ additional_includes|raw }}
+{{ article_includes() }}
 <script>
 
 ArticleEditor.settings = {

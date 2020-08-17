@@ -33,18 +33,53 @@ class ArticleConfig
         return array_merge($this->getDefaults(), $extension->getConfig()['default']);
     }
 
+    public function getPlugins(): array
+    {
+        $extension = $this->registry->getExtension(Extension::class);
+
+        $plugins = $this->getDefaultPlugins();
+
+        if (is_array($extension->getConfig()['plugins'])) {
+            $plugins = array_merge($plugins, $extension->getConfig()['plugins']);
+        }
+
+        return $plugins;
+    }
+
     public function getDefaults()
     {
         return [
-            'imageUpload' => $this->urlGenerator->generate('bolt_article_upload', ['location' => 'files']),
-            'imageUploadParam' => 'file',
-            'multipleUpload' => 'false',
-            'imageData' => [
-                '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
+            'image' => [
+                'upload' => $this->urlGenerator->generate('bolt_article_upload', ['location' => 'files']),
+                'select' => $this->urlGenerator->generate('bolt_article_images', [
+                    '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
+                    'foo' => '1', // To ensure token is cut off correctly
+                ]),
+                'data' => [
+                    '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
+                ],
+                'multiple' => false,
             ],
             'minHeight' => '200px',
             'maxHeight' => '700px',
             'css' => '/assets/article/css/',
+        ];
+    }
+
+    public function getDefaultPlugins()
+    {
+        return [
+            'blockcode' => ['blockcode/blockcode.min.js'],
+            'counter' => ['counter/counter.min.js'],
+            'icons' => ['icons/icons.min.js'],
+            'inlineformat' => ['inlineformat/inlineformat.min.js'],
+            'reorder' => ['reorder/reorder.min.js'],
+            'selector' => ['selector/selector.min.js'],
+            'specialchars' => ['specialchars/specialchars.min.js'],
+            'style' => ['style/style.min.js'],
+            'tags' => ['tags/tags.min.js', 'tags/tags.min.css'],
+            'underline' => ['underline/underline.min.js'],
+            'variable' => ['variable/variable.min.js'],
         ];
     }
 }
