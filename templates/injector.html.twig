@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="/assets/article/css/article-editor.min.css">
 {{ article_includes() }}
 <script>
-
 ArticleEditor.settings = {
     callbacks: {
         image: {
@@ -25,16 +24,6 @@ ArticleEditor.settings = {
     }
 };
 
-
 ArticleEditor('.article-field', {{ article_settings() }});
-
 </script>
-<style>
-    .article-source, .article-styles {
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    }
-    .article-styles img {
-        max-width: 50%;
-    }
-</style>
 

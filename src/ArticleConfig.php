@@ -63,6 +63,11 @@ class ArticleConfig
             'minHeight' => '200px',
             'maxHeight' => '700px',
             'css' => '/assets/article/css/',
+            'custom' => [
+                'css' => [
+                    '/assets/article/css/bolt-additions.css'
+                ]
+            ]
         ];
     }
 

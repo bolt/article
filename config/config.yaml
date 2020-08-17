@@ -4,6 +4,8 @@
 default:
   plugins: [ blockcode, inlineformat, reorder, selector, style, tags, underline ]
   source: true
+  grid:
+    classname: 'article-grid'
 
 plugins:
   ~
