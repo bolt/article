@@ -7,6 +7,9 @@ services:
     Bolt\Article\Controller\Upload:
         tags: ['controller.service_arguments']
 
+    Bolt\Article\Controller\Images:
+        tags: ['controller.service_arguments']
+
 ### Map entities
 doctrine:
     orm:

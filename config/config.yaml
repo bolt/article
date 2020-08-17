@@ -6,14 +6,4 @@ default:
   source: true
 
 plugins:
-  blockcode: [ blockcode/blockcode.min.js ]
-  counter: [ counter/counter.min.js ]
-  icons: [ icons/icons.min.js ]
-  inlineformat: [ inlineformat/inlineformat.min.js ]
-  reorder: [ reorder/reorder.min.js ]
-  selector: [ selector/selector.min.js ]
-  specialchars: [ specialchars/specialchars.min.js ]
-  style: [ style/style.min.js ]
-  tags: [ tags/tags.min.js, tags/tags.min.css ]
-  underline: [ underline/underline.min.js ]
-  variable: [ variable/variable.min.js ]
+  ~
