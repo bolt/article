@@ -23,8 +23,9 @@ class ArticleInjectorWidget extends BaseWidget implements TwigAwareInterface
 
     public function run(array $params = []): ?string
     {
-        // Only output when editing a page.
-        if ($this->getExtension()->getRequest()->get('_route') !== 'bolt_content_edit') {
+        // Only produce output when editing or creating a page.
+        $route = $this->getExtension()->getRequest()->get('_route');
+        if (!in_array($route, ['bolt_content_edit', 'bolt_content_new'])) {
             return null;
         }
 
