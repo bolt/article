@@ -115,6 +115,8 @@ class ArticleConfig
 
         $records = $this->query->getContentForTwig($contentTypes, $params)->setMaxPerPage($amount);
 
+        $links = [];
+
         /** @var Content $record */
         foreach ($records as $record) {
             $extras = $record->getExtras();
