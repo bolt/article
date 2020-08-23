@@ -1,10 +1,5 @@
-{# todo: Use `asset`, but make sure the packages are set on POST, otherwise it'll break
-<script src="{{ asset('assets/article/article.js', 'public') }}"></script>
-<link rel="stylesheet" href="{{ asset('assets/article/article.css', 'public') }}">
---- #}
-
-<script src="/assets/article/article-editor.min.js"></script>
-<link rel="stylesheet" href="/assets/article/css/article-editor.min.css">
+<script src="{{ asset('assets/article/article-editor.min.js', 'public') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/article/css/article-editor.min.css', 'public') }}">
 {{ article_includes() }}
 <script>
 ArticleEditor.settings = {

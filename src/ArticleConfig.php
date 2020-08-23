@@ -79,6 +79,9 @@ class ArticleConfig
                     '/assets/article/css/bolt-additions.css',
                 ],
             ],
+            'toolbar' => [
+                'stickyTopOffset' => 50,
+            ],
         ];
     }
 
@@ -115,7 +118,12 @@ class ArticleConfig
 
         $records = $this->query->getContentForTwig($contentTypes, $params)->setMaxPerPage($amount);
 
-        $links = [];
+        $links = [
+            '___' => [
+                'name' => '(Choose an existing Record)',
+                'url' => '',
+            ],
+        ];
 
         /** @var Content $record */
         foreach ($records as $record) {
@@ -127,7 +135,7 @@ class ArticleConfig
             ];
         }
 
-        ksort($links);
+        ksort($links, SORT_STRING | SORT_FLAG_CASE);
 
         return [
             'definedlinks' => [

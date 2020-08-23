@@ -35,7 +35,7 @@ class TwigExtension extends AbstractExtension
     {
         $settings = $this->articleConfig->getConfig();
 
-        return Json::json_encode($settings, JSON_HEX_QUOT | JSON_HEX_APOS | JSON_PRETTY_PRINT);
+        return Json::json_encode($settings, JSON_HEX_QUOT | JSON_HEX_APOS);
     }
 
     public function articleIncludes(): string
