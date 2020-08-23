@@ -1,9 +1,9 @@
 # 📝 Bolt Article Extension
 
 This extension provides a "Article" field type, which is a powerful text editor
-for creating rich content in your Bolt websites. It can work with grids,
-embeds, typographic markup and media. The editor itself is developed by
-[Imperavi][article], and is licensed for usage in Bolt.
+for creating rich content in your [Bolt][https://boltcms.io] websites. It can
+work with grids, embeds, typographic markup and media. The editor itself is
+developed by [Imperavi][article], and is licensed for usage in Bolt.
 
 This extension allows you to add fields of `type: article` in your
 ContentTypes, as defined in `contenttypes.yaml`, like any other Field type.
