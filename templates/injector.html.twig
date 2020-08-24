@@ -19,6 +19,16 @@ ArticleEditor.settings = {
     }
 };
 
-ArticleEditor('.article-field', {{ article_settings() }});
-</script>
+function initArticles() {
+    ArticleEditor('.article-field', {{ article_settings() }});
+}
 
+$(document).on('DOMNodeInserted', function(e) {
+    if ( $(e.target).hasClass('collection-item') ) {
+        initArticles();
+    }
+});
+
+initArticles();
+
+</script>
