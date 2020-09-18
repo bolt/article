@@ -39,3 +39,15 @@
         margin-bottom: 1rem;
     }
 }
+
+blockquote {
+    background-color: #F5F5F5;
+    border-left: 5px solid #dbdbdb;
+    padding: 1.25em 1.5em;
+    font-style: italic;
+    color: #31363A;
+}
+
+blockquote p {
+    margin: 0;
+}
