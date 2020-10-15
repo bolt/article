@@ -104,7 +104,7 @@ class Upload implements AsyncZoneInterface
         if ($result->isValid()) {
             $resultMessage = [
                 'filekey' => [
-                    'url' => '/thumbs/1000x1000/' . $result->name,
+                    'url' => '/thumbs/1000×1000×max/' . $result->name,
                     'id' => 1,
                 ],
             ];
