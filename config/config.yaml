@@ -1,5 +1,7 @@
 # Settings for Bolt Article
 
+thumbnail: 1000×1000×max
+
 # All options: blockcode, buttonlink, definedlinks, handle, inlineformat, icons, specialchars, reorder, print, selector, style, tags, underline, variable
 default:
   plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline ]

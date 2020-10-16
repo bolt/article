@@ -102,9 +102,12 @@ class Upload implements AsyncZoneInterface
         }
 
         if ($result->isValid()) {
+
+            $thumbnail = '/thumbs/' . $this->config->get('thumbnail', '1000×1000×max') . '/';
+
             $resultMessage = [
                 'filekey' => [
-                    'url' => '/thumbs/1000×1000×max/' . $result->name,
+                    'url' => $thumbnail . $result->name,
                     'id' => 1,
                 ],
             ];
