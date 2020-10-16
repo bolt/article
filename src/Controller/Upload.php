@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bolt\Article\Controller;
 
+use Bolt\Article\ArticleConfig;
 use Bolt\Configuration\Config;
 use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
@@ -37,12 +38,16 @@ class Upload implements AsyncZoneInterface
     /** @var Request */
     private $request;
 
-    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, TextExtension $textExtension, RequestStack $requestStack)
+    /** @var ArticleConfig */
+    private $articleConfig;
+
+    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, TextExtension $textExtension, RequestStack $requestStack, ArticleConfig $articleConfig)
     {
         $this->config = $config;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->textExtension = $textExtension;
         $this->request = $requestStack->getCurrentRequest();
+        $this->articleConfig = $articleConfig;
     }
 
     /**
@@ -102,8 +107,7 @@ class Upload implements AsyncZoneInterface
         }
 
         if ($result->isValid()) {
-
-            $thumbnail = '/thumbs/' . $this->config->get('thumbnail', '1000×1000×max') . '/';
+            $thumbnail = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/';
 
             $resultMessage = [
                 'filekey' => [

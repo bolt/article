@@ -1,7 +1,5 @@
 # Settings for Bolt Article
 
-thumbnail: 1000×1000×max
-
 # All options: blockcode, buttonlink, definedlinks, handle, inlineformat, icons, specialchars, reorder, print, selector, style, tags, underline, variable
 default:
   plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline ]
@@ -14,6 +12,8 @@ default:
       '4|8': 'col-4|col-8'
       '6|6': 'col-6|col-6'
       '8|4': 'col-8|col-4'
+  image:
+    thumbnail: 1000×1000×max
 
 plugins:
   ~
