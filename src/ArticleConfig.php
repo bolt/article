@@ -70,6 +70,7 @@ class ArticleConfig
                     '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
                 ],
                 'multiple' => false,
+                'thumbnail' => '1000×1000×max',
             ],
             'minHeight' => '200px',
             'maxHeight' => '700px',
