@@ -75,11 +75,9 @@ class Images implements AsyncZoneInterface
         $files = [];
 
         foreach ($this->findFiles($path, $glob) as $file) {
-            // @todo Make the size of the images configurable
-
             $files[] = [
                 'thumb' => $this->thumbnailHelper->path($file->getRelativePathname(), 400, 300, null, null, 'crop'),
-                'url' => $this->thumbnailHelper->path($file->getRelativePathname(), 1000, 1000, null, null, 'fit'),
+                'url' => $thumbnail = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/' . $file->getRelativePathname(),
             ];
         }
 
