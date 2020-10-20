@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bolt\Article\Controller;
 
+use Bolt\Article\ArticleConfig;
 use Bolt\Configuration\Config;
 use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
@@ -36,12 +37,16 @@ class Images implements AsyncZoneInterface
     /** @var ThumbnailHelper */
     private $thumbnailHelper;
 
-    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, RequestStack $requestStack, UrlGeneratorInterface $urlGenerator, ThumbnailHelper $thumbnailHelper)
+    /** @var ArticleConfig */
+    private $articleConfig;
+
+    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, RequestStack $requestStack, UrlGeneratorInterface $urlGenerator, ThumbnailHelper $thumbnailHelper, ArticleConfig $articleConfig)
     {
         $this->config = $config;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->request = $requestStack->getCurrentRequest();
         $this->thumbnailHelper = $thumbnailHelper;
+        $this->articleConfig = $articleConfig;
     }
 
     /**
