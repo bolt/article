@@ -99,6 +99,11 @@ class Upload implements AsyncZoneInterface
         try {
             /** @var File $result */
             $result = $uploadHandler->process($request->files->get('file'));
+
+            // Clear the 'files' from the superglobals. We do this, so that we prevent breakage
+            // later on, should we do a `Request::createFromGlobals();`
+            // @see: https://github.com/bolt/core/issues/2027
+            $_FILES = [];
         } catch (\Throwable $e) {
             return new JsonResponse([
                 'error' => true,
