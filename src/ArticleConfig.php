@@ -7,6 +7,7 @@ namespace Bolt\Article;
 use Bolt\Common\Arr;
 use Bolt\Configuration\Config;
 use Bolt\Entity\Content;
+use Bolt\Extension\ExtensionInterface;
 use Bolt\Extension\ExtensionRegistry;
 use Bolt\Storage\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -29,6 +30,15 @@ class ArticleConfig
     /** @var Query */
     private $query;
 
+    /** @var ExtensionInterface */
+    private $extension = null;
+
+    /** @var array */
+    private $config = null;
+
+    /** @var array */
+    private $plugins = null;
+
     public function __construct(ExtensionRegistry $registry, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, Config $boltConfig, Query $query)
     {
         $this->registry = $registry;
@@ -40,22 +50,46 @@ class ArticleConfig
 
     public function getConfig(): array
     {
-        $extension = $this->registry->getExtension(Extension::class);
+        if ($this->config) {
+            return $this->config;
+        }
 
-        return array_replace_recursive($this->getDefaults(), $extension->getConfig()['default'], $this->getLinks());
+        $extension = $this->getExtension();
+
+        $this->config = array_replace_recursive($this->getDefaults(), $extension->getConfig()['default'], $this->getLinks());
+
+        return $this->config;
     }
 
     public function getPlugins(): array
     {
-        $extension = $this->registry->getExtension(Extension::class);
-
-        $plugins = $this->getDefaultPlugins();
-
-        if (is_array($extension->getConfig()['plugins'])) {
-            $plugins = array_replace_recursive($plugins, $extension->getConfig()['plugins']);
+        if ($this->plugins) {
+            return $this->plugins;
         }
 
-        return $plugins;
+        $extension = $this->getExtension();
+
+        $this->plugins = $this->getDefaultPlugins();
+
+        if (is_array($extension->getConfig()['plugins'])) {
+            $this->plugins = array_replace_recursive($plugins, $extension->getConfig()['plugins']);
+        }
+
+        return $this->plugins;
+    }
+
+    /**
+     * This seems trivial, but it's a _huge_ performance boost to get this just once and hold on to it.
+     *
+     * @return ExtensionInterface|null
+     */
+    private function getExtension()
+    {
+        if (! $this->extension) {
+            $this->extension = $this->registry->getExtension(Extension::class);
+        }
+
+        return $this->extension;
     }
 
     private function getDefaults(): array
