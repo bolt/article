@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Bolt\Article;
 
-use Bolt\Common\Arr;
 use Bolt\Configuration\Config;
 use Bolt\Entity\Content;
-use Bolt\Extension\ExtensionInterface;
 use Bolt\Extension\ExtensionRegistry;
 use Bolt\Storage\Query;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class ArticleConfig
 {
+    private const CACHE_DURATION = 1800; // 30 minutes
+
     /** @var ExtensionRegistry */
     private $registry;
 
@@ -30,22 +32,29 @@ class ArticleConfig
     /** @var Query */
     private $query;
 
-    /** @var ExtensionInterface */
-    private $extension = null;
-
     /** @var array */
     private $config = null;
 
     /** @var array */
     private $plugins = null;
 
-    public function __construct(ExtensionRegistry $registry, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, Config $boltConfig, Query $query)
-    {
+    /** @var CacheInterface */
+    private $cache;
+
+    public function __construct(
+        ExtensionRegistry $registry,
+        UrlGeneratorInterface $urlGenerator,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        Config $boltConfig,
+        Query $query,
+        CacheInterface $cache
+    ) {
         $this->registry = $registry;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->boltConfig = $boltConfig;
         $this->query = $query;
+        $this->cache = $cache;
     }
 
     public function getConfig(): array
@@ -78,18 +87,9 @@ class ArticleConfig
         return $this->plugins;
     }
 
-    /**
-     * This seems trivial, but it's a _huge_ performance boost to get this just once and hold on to it.
-     *
-     * @return ExtensionInterface|null
-     */
     private function getExtension()
     {
-        if (! $this->extension) {
-            $this->extension = $this->registry->getExtension(Extension::class);
-        }
-
-        return $this->extension;
+        return  $this->extension = $this->registry->getExtension(Extension::class);
     }
 
     private function getDefaults(): array
@@ -143,6 +143,15 @@ class ArticleConfig
     }
 
     private function getLinks(): array
+    {
+        return $this->cache->get('editor_insert_links', function (ItemInterface $item) {
+            $item->expiresAfter(self::CACHE_DURATION);
+
+            return $this->getLinksHelper();
+        });
+    }
+
+    private function getLinksHelper(): array
     {
         $amount = 100;
         $params = [
