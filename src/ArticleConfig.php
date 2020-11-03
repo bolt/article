@@ -81,7 +81,7 @@ class ArticleConfig
         $this->plugins = $this->getDefaultPlugins();
 
         if (is_array($extension->getConfig()['plugins'])) {
-            $this->plugins = array_replace_recursive($plugins, $extension->getConfig()['plugins']);
+            $this->plugins = array_replace_recursive($this->plugins, $extension->getConfig()['plugins']);
         }
 
         return $this->plugins;
