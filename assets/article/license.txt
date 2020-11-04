@@ -12,9 +12,9 @@ Permitted Use
 
 Article Editor License Tiers:
 
-Pro License: Holder of the Pro License may use the current version of the Software for a sole purpose of integration it within an unlimited number of applications of an unlimited number of website, located on an unlimited number of domains with unlimited subdomains (*.domain.com) engaging in commercial, for-profit, or non-commercial, non-for-profit activities, including "Software as a Service" products (SaaS). The Pro License does not allow integration of the Software with open source products, or downloadable extensions, plugins or applications. Technical support to the Pro license holders is provided in form of Documentation on Imperavi.com website only; Pro License holders also allowed to submit bugs and request features via customer’s account page.
+Pro License: Holder of the Pro License may use the current version of the Software for a sole purpose of integration it within an unlimited number of applications of an unlimited number of website, located on an unlimited number of domains with unlimited subdomains (*.domain.com) engaging in commercial, for-profit, or non-commercial, non-for-profit activities, including "Software as a Service" products (SaaS). The Pro License does not allow integration of the Software with Open Source products, or downloadable extensions, plugins or applications. Technical support to the Pro license holders is provided in form of Documentation on Imperavi.com website only; Pro License holders also allowed to submit bugs and request features via customer’s account page.
 
-OEM License: Holder of the OEM License may use the current version of the Software for a sole purpose of integration it within an unlimited number of applications of an unlimited number of website, located on an unlimited number of domains with unlimited subdomains (*.domain.com) engaging in commercial, for-profit, or non-commercial, non-for-profit activities. The OEM License allows integration of the Software with open source products, “Software as a Service” products (SaaS), downloadable extensions, plugins and applications. Technical support to the OEM license holders is provided in a form of Documentation on Imperavi.com website only; OEM License holders also allowed to submit bugs and request features via customer’s account page.
+OEM License: Holder of the OEM License may use the current version of the Software for a sole purpose of integration it within an unlimited number of applications of an unlimited number of website, located on an unlimited number of domains with unlimited subdomains (*.domain.com) engaging in commercial, for-profit, or non-commercial, non-for-profit activities. The OEM License allows integration of “Software as a Service” products (SaaS), downloadable extensions, plugins and applications. The OEM License does not allow integration of the Software with Open Source products. Technical support to the OEM license holders is provided in a form of Documentation on Imperavi.com website only; OEM License holders also allowed to submit bugs and request features via customer’s account page.
 
 Upgrades, Updates, New Versions
 
@@ -24,6 +24,7 @@ Restrictions
 
 Unless you have been granted prior, written explicit consent from Imperavi LLC, you may not:
 
+— Use the Software in Open Source projects.
 - Reproduce, distribute, or transfer the Software as a sole product, or portions thereof, to any third party.
 - Sell, rent, lease, assign, or sublet the Software as a sole product or portions thereof.
 - Grant rights to any other person.</li>
