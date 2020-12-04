@@ -139,6 +139,7 @@ class ArticleConfig
             'tags' => ['tags/tags.min.js', 'tags/tags.min.css'],
             'underline' => ['underline/underline.min.js'],
             'variable' => ['variable/variable.min.js'],
+            'makebutton' => ['makebutton/makebutton.min.js'],
         ];
     }
 
