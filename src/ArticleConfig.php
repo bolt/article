@@ -130,16 +130,18 @@ class ArticleConfig
             'definedlinks' => ['definedlinks/definedlinks.min.js'],
             'handle' => ['handle/handle.min.js'],
             'icons' => ['icons/icons.min.js'],
+            'imageposition' => ['imageposition/imageposition.min.js'],
             'inlineformat' => ['inlineformat/inlineformat.min.js'],
+            'makebutton' => ['makebutton/makebutton.min.js'],
             'print' => ['print/print.min.js'],
             'reorder' => ['reorder/reorder.min.js'],
             'selector' => ['selector/selector.min.js'],
             'specialchars' => ['specialchars/specialchars.min.js'],
             'style' => ['style/style.min.js'],
             'tags' => ['tags/tags.min.js', 'tags/tags.min.css'],
+            'textdirection' => ['textdirection/textdirection.min.js'],
             'underline' => ['underline/underline.min.js'],
             'variable' => ['variable/variable.min.js'],
-            'makebutton' => ['makebutton/makebutton.min.js'],
         ];
     }
 
