@@ -183,8 +183,8 @@ vendor/bin/ecs check src --fix
 ```
 
 [article]: https://imperavi.com/article/
-[create-plugin]: https://imperavi.com/article/custom-block/how-to/create-a-plugin/
-[create-block]: https://imperavi.com/article/custom-block/how-to/create-a-plugin/
+[create-plugin]: https://imperavi.com/article/docs/how-to-create-a-plugin/
+[create-block]: https://imperavi.com/article/docs/how-to-create-a-custom-block/
 [buttons]: https://imperavi.com/article/docs/get-started/
 [plugins]: https://imperavi.com/article/plugins/
 [paste]: https://imperavi.com/article/docs/settings/paste/
