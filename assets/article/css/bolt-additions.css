@@ -51,3 +51,22 @@ blockquote {
 blockquote p {
     margin: 0;
 }
+
+table {
+    font-size: 90%;
+}
+
+table th {
+    background-color: #E8E8E8;
+}
+
+button {
+    border-radius: 4px;
+    background-color: #1740b4;
+    color: #FFF;
+    margin: 2rem 0;
+}
+
+code, pre code {
+    font-size: 90%;
+}
