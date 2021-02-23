@@ -25,7 +25,7 @@ class ArticleInjectorWidget extends BaseWidget implements TwigAwareInterface
     {
         $request = $this->getExtension()->getRequest();
         // Only produce output when editing or creating a Record, with GET method.
-        if (! in_array($request->get('_route'), ['bolt_content_edit', 'bolt_content_new'], true) ||
+        if (! in_array($request->get('_route'), ['bolt_content_edit', 'bolt_content_new', 'bolt_content_duplicate'], true) ||
             ($this->getExtension()->getRequest()->getMethod() !== 'GET')) {
             return null;
         }
