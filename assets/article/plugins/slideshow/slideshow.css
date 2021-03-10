@@ -1,0 +1,28 @@
+.arx-popup-slideshow .arx-popup-body,
+.arx-popup-stack-slideshow .arx-popup-body {
+    padding: 20px;
+    padding-top: 0;
+}
+.arx-popup-slideshow .arx-slideshow-items {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background-color: #E5E7E7;
+}
+.arx-popup-slideshow .arx-slideshow-items:empty {
+    padding: 0;
+    margin-top: -10px;
+}
+.arx-popup-slideshow .arx-slideshow-items img {
+    max-height: 100px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.arx-popup-slideshow .arx-slideshow-item {
+    position: relative;
+}
+.arx-popup-slideshow .arx-upload-remove {
+    right: 5px;
+}
