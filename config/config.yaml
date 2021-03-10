@@ -1,8 +1,10 @@
 # Settings for Bolt Article
 
-# All options: blockcode, buttonlink, definedlinks, handle, inlineformat, icons, specialchars, reorder, print, selector, style, tags, underline, variable
+# All options: blockcode, buttonlink, carousel, counter, definedlinks, filelink,
+# handle, icons, imageposition, inlineformat, makebutton, print, reorder,
+# selector, specialchars, style, tags, textdirection, underline, variable
 default:
-  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline ]
+  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline, imageposition, filelink ]
   source: true
   grid:
     classname: 'article-grid'

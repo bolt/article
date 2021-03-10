@@ -51,9 +51,22 @@ class Upload implements AsyncZoneInterface
     }
 
     /**
-     * @Route("/article_upload", name="bolt_article_upload", methods={"POST"})
+     * @Route("/bolt_article_image_upload", name="bolt_article_image_upload", methods={"POST"})
      */
-    public function handleUpload(Request $request): JsonResponse
+    public function handleImageUpload(Request $request): JsonResponse
+    {
+        return $this->handleUpload($request, 'image');
+    }
+
+    /**
+     * @Route("/bolt_article_file_upload", name="bolt_article_file_upload", methods={"POST"})
+     */
+    public function handleFileUpload(Request $request): JsonResponse
+    {
+        return $this->handleUpload($request, 'file');
+    }
+
+    private function handleUpload(Request $request, string $type = 'image'): JsonResponse
     {
         try {
             $this->validateCsrf('bolt_article');

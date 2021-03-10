@@ -96,7 +96,7 @@ class ArticleConfig
     {
         return [
             'image' => [
-                'upload' => $this->urlGenerator->generate('bolt_article_upload', ['location' => 'files']),
+                'upload' => $this->urlGenerator->generate('bolt_article_image_upload', ['location' => 'files']),
                 'select' => $this->urlGenerator->generate('bolt_article_images', [
                     '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
                     'foo' => '1', // To ensure token is cut off correctly
@@ -106,6 +106,16 @@ class ArticleConfig
                 ],
                 'multiple' => false,
                 'thumbnail' => '1000×1000×max',
+            ],
+            'filelink' => [
+                'upload' => $this->urlGenerator->generate('bolt_article_file_upload', ['location' => 'files']),
+                'select' => $this->urlGenerator->generate('bolt_article_images', [
+                    '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
+                    'foo' => '1', // To ensure token is cut off correctly
+                ]),
+                'data' => [
+                    '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
+                ],
             ],
             'minHeight' => '200px',
             'maxHeight' => '700px',
@@ -126,8 +136,10 @@ class ArticleConfig
         return [
             'blockcode' => ['blockcode/blockcode.min.js'],
             'buttonlink' => ['buttonlink/buttonlink.min.js'],
+            'carousel' => ['carousel/carousel.min.js', 'carousel/carousel.min.css'],
             'counter' => ['counter/counter.min.js'],
             'definedlinks' => ['definedlinks/definedlinks.min.js'],
+            'filelink' => ['filelink/filelink.min.js'],
             'handle' => ['handle/handle.min.js'],
             'icons' => ['icons/icons.min.js'],
             'imageposition' => ['imageposition/imageposition.min.js'],
