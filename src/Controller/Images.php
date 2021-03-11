@@ -68,14 +68,14 @@ class Images implements AsyncZoneInterface
 
         $path = $this->config->getPath($locationName, true);
 
-        $files = $this->getFilesIndex($path, $type);
+        $files = $this->getImageFilesIndex($path, $type);
 
         return new JsonResponse($files);
     }
 
-    private function getFilesIndex(string $path, string $type): Collection
+    private function getImageFilesIndex(string $path, string $type): Collection
     {
-        $glob = '*.{jpg,png,gif,jpeg,svg}';
+        $glob = '*.{' . implode(',', $this->config->getMediaTypes()->toArray()) . '}';
 
         $files = [];
 
@@ -83,6 +83,48 @@ class Images implements AsyncZoneInterface
             $files[] = [
                 'thumb' => $this->thumbnailHelper->path($file->getRelativePathname(), 400, 300, null, null, 'crop'),
                 'url' => $thumbnail = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/' . $file->getRelativePathname(),
+            ];
+        }
+
+        return new Collection($files);
+    }
+
+    /**
+     * @Route("/article_files", name="bolt_article_files", methods={"GET"})
+     */
+    public function getFilesList(Request $request): JsonResponse
+    {
+        try {
+            $this->validateCsrf('bolt_article');
+        } catch (InvalidCsrfTokenException $e) {
+            return new JsonResponse([
+                'error' => true,
+                'message' => 'Invalid CSRF token',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        $locationName = $this->request->query->get('location', 'files');
+        $type = $this->request->query->get('type', '');
+
+        $path = $this->config->getPath($locationName, true);
+
+        $files = $this->getFilesIndex($path, $type);
+
+        return new JsonResponse($files);
+    }
+
+    private function getFilesIndex(string $path, string $type): Collection
+    {
+        $fileTypes = $this->config->getFileTypes()->toArray();
+        $glob = '*.{' . implode(',', $fileTypes) . '}';
+
+        $files = [];
+
+        foreach ($this->findFiles($path, $glob) as $file) {
+            $files[] = [
+                'title' => $file->getRelativePathname(),
+                'url' => '/files/' . $file->getRelativePathname(),
+                'size' => $file->getSize(),
             ];
         }
 

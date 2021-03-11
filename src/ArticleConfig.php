@@ -109,7 +109,7 @@ class ArticleConfig
             ],
             'filelink' => [
                 'upload' => $this->urlGenerator->generate('bolt_article_file_upload', ['location' => 'files']),
-                'select' => $this->urlGenerator->generate('bolt_article_images', [
+                'select' => $this->urlGenerator->generate('bolt_article_files', [
                     '_csrf_token' => $this->csrfTokenManager->getToken('bolt_article')->getValue(),
                     'foo' => '1', // To ensure token is cut off correctly
                 ]),
