@@ -87,7 +87,7 @@ class Upload implements AsyncZoneInterface
             Handler::OPTION_OVERWRITE => false,
         ]);
 
-        if ($type == 'image') {
+        if ($type === 'image') {
             $acceptedFileTypes = $this->config->getMediaTypes()->toArray();
             $filenamePrefix = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/';
         } else {
@@ -132,7 +132,6 @@ class Upload implements AsyncZoneInterface
         }
 
         if ($result->isValid()) {
-
             $resultMessage = [
                 'filekey' => [
                     'url' => $filenamePrefix . $result->name,
