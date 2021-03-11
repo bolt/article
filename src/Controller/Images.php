@@ -8,6 +8,7 @@ use Bolt\Article\ArticleConfig;
 use Bolt\Configuration\Config;
 use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
+use Bolt\Twig\TextExtension;
 use Bolt\Utils\ThumbnailHelper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
@@ -120,11 +121,13 @@ class Images implements AsyncZoneInterface
 
         $files = [];
 
+        $textExtenion = new TextExtension();
+
         foreach ($this->findFiles($path, $glob) as $file) {
             $files[] = [
                 'title' => $file->getRelativePathname(),
                 'url' => '/files/' . $file->getRelativePathname(),
-                'size' => $file->getSize(),
+                'size' => $textExtenion->formatBytes($file->getSize(), 1),
             ];
         }
 
