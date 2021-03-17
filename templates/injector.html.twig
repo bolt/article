@@ -1,5 +1,12 @@
 <script src="{{ asset('assets/article/article-editor.min.js', 'public') }}"></script>
 <link rel="stylesheet" href="{{ asset('assets/article/css/article-editor.min.css', 'public') }}">
+
+{% set settings = article_settings()|json_decode() %}
+{% if settings.draggable_menu is defined and settings.draggable_menu is not empty %}
+    <link rel="stylesheet" href="{{ asset(settings.draggable_menu.css, 'public') }}">
+    <script src="{{ asset(settings.draggable_menu.js, 'public') }}">
+{% endif %}
+
 {{ article_includes() }}
 <script>
 ArticleEditor.settings = {

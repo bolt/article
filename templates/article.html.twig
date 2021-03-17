@@ -10,7 +10,7 @@
         {% set article_settings = article_settings()|json_decode() %}
         {% if article_settings.draggable_menu is defined and article_settings.draggable_menu is not empty %}
             <div class="arx-container arx-container-1 arx-in-blur" style="padding-left:4px;">
-                {{ article_settings.draggable_menu|raw }} 
+                {% include article_settings.draggable_menu.template %}
             </div>
         {% endif %}
     </div>
