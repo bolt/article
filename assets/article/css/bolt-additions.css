@@ -51,10 +51,3 @@ blockquote {
 blockquote p {
     margin: 0;
 }
-
-/** 
- *Fix arx-content.min.css conflicts
- */
- address+h4,blockquote+h4,dl+h4,figure+h4,ol+h4,p+h4,pre+h4,table+h4,ul+h4{margin-top:0;}
- address+*, blockquote+*, dl+*, figure+*, ol+*, p+*, pre+*, table+*, ul+*{margin-top: 0;}
- h3+h4{margin-top: 0px;}
