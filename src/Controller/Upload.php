@@ -51,9 +51,22 @@ class Upload implements AsyncZoneInterface
     }
 
     /**
-     * @Route("/article_upload", name="bolt_article_upload", methods={"POST"})
+     * @Route("/bolt_article_image_upload", name="bolt_article_image_upload", methods={"POST"})
      */
-    public function handleUpload(Request $request): JsonResponse
+    public function handleImageUpload(Request $request): JsonResponse
+    {
+        return $this->handleUpload($request, 'image');
+    }
+
+    /**
+     * @Route("/bolt_article_file_upload", name="bolt_article_file_upload", methods={"POST"})
+     */
+    public function handleFileUpload(Request $request): JsonResponse
+    {
+        return $this->handleUpload($request, 'file');
+    }
+
+    private function handleUpload(Request $request, string $type = 'image'): JsonResponse
     {
         try {
             $this->validateCsrf('bolt_article');
@@ -74,7 +87,14 @@ class Upload implements AsyncZoneInterface
             Handler::OPTION_OVERWRITE => false,
         ]);
 
-        $acceptedFileTypes = array_merge($this->config->getMediaTypes()->toArray(), $this->config->getFileTypes()->toArray());
+        if ($type === 'image') {
+            $acceptedFileTypes = $this->config->getMediaTypes()->toArray();
+            $filenamePrefix = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/';
+        } else {
+            $acceptedFileTypes = array_merge($this->config->getMediaTypes()->toArray(), $this->config->getFileTypes()->toArray());
+            $filenamePrefix = '/files/';
+        }
+
         $maxSize = $this->config->getMaxUpload();
         $uploadHandler->addRule(
             'extension',
@@ -112,11 +132,9 @@ class Upload implements AsyncZoneInterface
         }
 
         if ($result->isValid()) {
-            $thumbnail = '/thumbs/' . $this->articleConfig->getConfig()['image']['thumbnail'] . '/';
-
             $resultMessage = [
                 'filekey' => [
-                    'url' => $thumbnail . $result->name,
+                    'url' => $filenamePrefix . $result->name,
                     'id' => 1,
                 ],
             ];
