@@ -2,9 +2,10 @@
 
 # All options: blockcode, buttonlink, carousel, counter, definedlinks, filelink,
 # handle, icons, imageposition, inlineformat, makebutton, print, reorder,
-# selector, specialchars, style, tags, textdirection, underline, variable, removeformat
+# selector, specialchars, style, tags, textdirection, underline, variable,
+# removeformat, imageresize
 default:
-  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline, imageposition, filelink, removeformat ]
+  plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline, imageposition, filelink, removeformat, imageresize ]
   source: true
   grid:
     classname: 'article-grid'
