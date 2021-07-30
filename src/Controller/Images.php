@@ -76,7 +76,7 @@ class Images implements AsyncZoneInterface
 
     private function getImageFilesIndex(string $path, string $type): Collection
     {
-        $glob = '*.{' . implode(',', $this->config->getMediaTypes()->toArray()) . '}';
+        $glob = '*.{' . implode(',', self::getImageTypes()) . '}';
 
         $files = [];
 
@@ -144,5 +144,10 @@ class Images implements AsyncZoneInterface
         }
 
         return $finder;
+    }
+    
+    private static function getImageTypes(): array
+    {
+        return ['gif', 'png', 'jpg', 'jpeg', 'svg', 'avif', 'webp'];
     }
 }
