@@ -23,3 +23,8 @@ doctrine:
                 dir: '%kernel.project_dir%/vendor/bolt/article/src/Entity'
                 prefix: 'Bolt\Article'
                 alias: Article
+
+twig:
+    paths:
+       # '%kernel.project_dir%/my-templates-folder/': 'draggable' 
+        '%kernel.project_dir%/vendor/bolt/article/templates/tailwindcss': 'draggable' 

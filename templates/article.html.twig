@@ -3,6 +3,16 @@
 
 {% block field %}
 
-    <textarea type="text" name="{{ name }}" id="{{ id }}" class="article-field d-none">{{ value }}</textarea>
+    <div style="display: flex">
+        <div style="flex: auto;">
+            <textarea type="text" name="{{ name }}" id="{{ id }}" class="article-field d-none">{{ value }}</textarea>
+        </div>
+        {% set article_settings = article_settings()|json_decode() %}
+        {% if article_settings.draggable_menu is defined and article_settings.draggable_menu is not empty %}
+            <div class="arx-container arx-container-1 arx-in-blur" style="padding-left:4px;">
+                {% include article_settings.draggable_menu.template %}
+            </div>
+        {% endif %}
+    </div>
 
 {% endblock %}

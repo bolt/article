@@ -7,6 +7,8 @@
 default:
   plugins: [ blockcode, buttonlink, definedlinks, inlineformat, reorder, tags, underline, imageposition, filelink, removeformat, imageresize ]
   source: true
+  # custom:
+  #  css: ['/theme/base-2021/css/tailwind.css', '/assets/article/css/bolt-additions.css']
   grid:
     classname: 'article-grid'
     columns: 12
@@ -15,8 +17,49 @@ default:
       '4|8': 'col-4|col-8'
       '6|6': 'col-6|col-6'
       '8|4': 'col-8|col-4'
+
   image:
     thumbnail: 1000×1000×max
+
+  # Draggable Menu Example for Tailwindcss
+  #
+  # Uncomment these lines to enable draggable settings with some draggable tailwindcss componants
+  # Override templates folder in 'config/packages/extension_article.yaml' to use your favorite tailwindcss components in draggable menu
+  #
+  #
+  # draggable_menu: 
+  #   template: '@draggable/_draggable_menu.twig'
+  #   css: 'assets/article/css/draggable-menu-default.css'
+  #   js: 'assets/article/js/draggable-menu.js'
+  #
+  # draggable:
+  #   'card-01':        '@draggable/components/card/_card_01.twig'
+  #   'card-02':        '@draggable/components/card/_card_02.twig'
+  #   'paragraph':      '@draggable/components/general/_paragraph.twig'
+  #   'text':           '<div class="text-arx">Lorem ipsum dolor si amet</div>'
+  #   'heading-large':  '@draggable/components/general/_heading_large.twig'
+  #   'heading-medium': '@draggable/components/general/_heading_medium.twig'
+  #   'heading-small':  '@draggable/components/general/_heading_small.twig'
+  #   'header-01':      '@draggable/components/headers/_header_01.twig'
+  #   'image':          '@draggable/components/general/_image.twig'
+  #   'embed':          '@draggable/components/general/_embed.twig'
+  #   'video':          '@draggable/components/general/_video.twig'
+  #   'layer':          '@draggable/components/design/_layer.twig'
+  #   'container':      '@draggable/components/design/_container.twig'
+  #   'line':           '@draggable/components/general/_line.twig'
+  #   'quote':          '@draggable/components/general/_quote.twig'
+  #   'code':           '@draggable/components/general/_code.twig'
+  #   'hero-01':        '@draggable/components/heros/_hero_01.twig'
+  #   'features-01':    '@draggable/components/features/_features_01.twig'
+  #   'testimonial-01': '@draggable/components/testimonials/_testimonial_01.twig'
+  #   'pricing-01':     '@draggable/components/pricing/_pricing_01.twig'
+  #   'flex-03':        '@draggable/components/design/_flex_03.twig'
+  #   'flex-02':        '@draggable/components/design/_flex_02.twig'
+  #   'flex-04':        '@draggable/components/design/_flex_04.twig'
+  #   'grid-01':        '@draggable/components/design/_grid_01.twig'
+  #   'grid-02':        '@draggable/components/design/_grid_02.twig'
+  #   'grid-03':        '@draggable/components/design/_grid_03.twig'
+  #   'grid-04':        '@draggable/components/design/_grid_04.twig'
 
 plugins:
   ~
