@@ -13,7 +13,7 @@
         "php": ">=7.2.9"
     },
     "require-dev": {
-        "bolt/core": "^4.0.0",
+        "bolt/core": "^4.0 | ^5.0",
         "symplify/easy-coding-standard": "^7.0"
     },
     "autoload": {
