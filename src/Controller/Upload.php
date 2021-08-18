@@ -23,7 +23,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Webmozart\PathUtil\Path;
 
 /**
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('upload')")
  */
 class Upload implements AsyncZoneInterface
 {
