@@ -23,7 +23,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Tightenco\Collect\Support\Collection;
 
 /**
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('list_files:files')")
  */
 class Images implements AsyncZoneInterface
 {
