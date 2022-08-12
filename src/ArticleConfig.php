@@ -153,6 +153,7 @@ class ArticleConfig
             'blockcode' => ['blockcode/blockcode.min.js'],
             'buttonlink' => ['buttonlink/buttonlink.min.js'],
             'carousel' => ['carousel/carousel.min.js', 'carousel/carousel.min.css'],
+            'clips' => ['clips/clips.min.js'],
             'counter' => ['counter/counter.min.js'],
             'definedlinks' => ['definedlinks/definedlinks.min.js'],
             'filelink' => ['filelink/filelink.min.js'],
