@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Bolt\Article;
 
 use Bolt\Common\Json;
+use Symfony\Component\Filesystem\Path;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Webmozart\PathUtil\Path;
 
 class TwigExtension extends AbstractExtension
 {
