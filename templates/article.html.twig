@@ -3,6 +3,6 @@
 
 {% block field %}
 
-    <textarea type="text" name="{{ name }}" id="{{ id }}" class="article-field d-none">{{ value }}</textarea>
+    <textarea name="{{ name }}" id="{{ id }}" class="article-field d-none">{{ value|default(field.definition.get('default')) }}</textarea>
 
 {% endblock %}
