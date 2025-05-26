@@ -23,28 +23,20 @@ function initArticles() {
     ArticleEditor('.article-field', {{ article_settings() }});
 }
 
-    const articleObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList' && mutation.addedNodes.length) {
-                for (let node of mutation.addedNodes) {
-                    if (
-                        node.nodeType === Node.ELEMENT_NODE &&
-                        node.classList.contains('collection-item')
-                    ) {
-                        initArticles();
-                        return;
-                    }
-                    if (node.querySelector && node.querySelector('.collection-item')) {
-                        initArticles();
-                        return;
-                    }
-                }
+const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+            if ($(node).hasClass('collection-item')) {
+                initArticles();
             }
         });
     });
+});
 
-    articleObserver.observe(document.body, config);
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
 
-    document.addEventListener('DOMContentLoaded', initArticles);
-
+initArticles();
 </script>
