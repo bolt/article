@@ -2,24 +2,26 @@
 <link rel="stylesheet" href="{{ asset('assets/article/css/article-editor.min.css', 'public') }}">
 {{ article_includes() }}
 <script>
-    ArticleEditor.settings = {
-        callbacks: {
-            image: {
-                uploadError: function(response) {
-                    alert(response.message);
-                }
-            },
-            file: {
-                uploadError: function(response) {
-                    alert(response.message);
-                }
+ArticleEditor.settings = {
+    callbacks: {
+        image: {
+            uploadError: function(response)
+            {
+                alert(response.message);
+            }
+        },
+        file: {
+            uploadError: function(response)
+            {
+                alert(response.message);
             }
         }
-    };
-
-    function initArticles() {
-        ArticleEditor('.article-field', {{ article_settings() }});
     }
+};
+
+function initArticles() {
+    ArticleEditor('.article-field', {{ article_settings() }});
+}
 
     const config = {
         childList: true,
