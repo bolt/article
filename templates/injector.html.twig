@@ -23,11 +23,6 @@ function initArticles() {
     ArticleEditor('.article-field', {{ article_settings() }});
 }
 
-    const config = {
-        childList: true,
-        subtree:   true
-    };
-
     const articleObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList' && mutation.addedNodes.length) {
