@@ -24,7 +24,7 @@ function initArticles() {
 }
 
 const observerArticle = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
+    for (let mutation of mutations) {
         if (mutation.type === 'childList' && mutation.addedNodes.length) {
             mutation.addedNodes.forEach(function(node) {
                 if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('collection-item')) {
