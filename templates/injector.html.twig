@@ -23,12 +23,22 @@ function initArticles() {
     ArticleEditor('.article-field', {{ article_settings() }});
 }
 
-$(document).on('DOMNodeInserted', function(e) {
-    if ( $(e.target).hasClass('collection-item') ) {
-        initArticles();
-    }
+const observerArticle = new MutationObserver(function(mutations) {
+    for (let mutation of mutations) {
+        if (mutation.type === 'childList' && mutation.addedNodes.length) {
+            for (let node of mutation.addedNodes) {
+                if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('collection-item')) {
+                    initArticles();
+                }
+            });
+        }
+    });
+});
+
+observerArticle.observe(document.body, {
+    childList: true,
+    subtree: true
 });
 
 initArticles();
-
 </script>
