@@ -10,19 +10,17 @@ use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
 use Bolt\Twig\TextExtension;
 use Bolt\Utils\ThumbnailHelper;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Tightenco\Collect\Support\Collection;
 
-/**
- * @Security("is_granted('list_files:files')")
- */
+#[IsGranted('list_files:files')]
 class Images implements AsyncZoneInterface
 {
     use CsrfTrait;
@@ -36,9 +34,7 @@ class Images implements AsyncZoneInterface
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    /**
-     * @Route("/article_images", name="bolt_article_images", methods={"GET"})
-     */
+    #[Route('/article_images', name: 'bolt_article_images', methods: [Request::METHOD_GET])]
     public function getImagesList(Request $request): JsonResponse
     {
         try {
@@ -76,9 +72,7 @@ class Images implements AsyncZoneInterface
         return new Collection($files);
     }
 
-    /**
-     * @Route("/article_files", name="bolt_article_files", methods={"GET"})
-     */
+    #[Route('/article_files', name: 'bolt_article_files', methods: [Request::METHOD_GET])]
     public function getFilesList(Request $request): JsonResponse
     {
         try {

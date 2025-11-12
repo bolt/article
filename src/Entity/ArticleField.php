@@ -10,9 +10,7 @@ use Bolt\Entity\FieldInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Twig\Markup;
 
-/**
- * @ORM\Entity
- */
+#[ORM\Entity]
 class ArticleField extends Field implements Excerptable, FieldInterface
 {
     public const TYPE = 'article';
@@ -20,7 +18,7 @@ class ArticleField extends Field implements Excerptable, FieldInterface
     /**
      * Override getTwigValue to render field as html
      */
-    public function getTwigValue()
+    public function getTwigValue(): Markup
     {
         $value = parent::getTwigValue();
 

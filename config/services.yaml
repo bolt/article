@@ -19,7 +19,7 @@ doctrine:
         mappings:
             Article:
                 is_bundle: false
-                type: annotation
+                type: attribute
                 dir: '%kernel.project_dir%/vendor/bolt/article/src/Entity'
                 prefix: 'Bolt\Article'
                 alias: Article
