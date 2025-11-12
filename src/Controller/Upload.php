@@ -10,21 +10,19 @@ use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
 use Bolt\Twig\TextExtension;
 use Cocur\Slugify\Slugify;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sirius\Upload\Handler;
 use Sirius\Upload\Result\File;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Throwable;
 
-/**
- * @Security("is_granted('upload')")
- */
+#[IsGranted('upload')]
 class Upload implements AsyncZoneInterface
 {
     use CsrfTrait;
@@ -38,17 +36,13 @@ class Upload implements AsyncZoneInterface
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    /**
-     * @Route("/bolt_article_image_upload", name="bolt_article_image_upload", methods={"POST"})
-     */
+    #[Route('/bolt_article_image_upload', name: 'bolt_article_image_upload', methods: [Request::METHOD_POST])]
     public function handleImageUpload(Request $request): JsonResponse
     {
         return $this->handleUpload($request, 'image');
     }
 
-    /**
-     * @Route("/bolt_article_file_upload", name="bolt_article_file_upload", methods={"POST"})
-     */
+    #[Route('/bolt_article_file_upload', name: 'bolt_article_file_upload', methods: [Request::METHOD_POST])]
     public function handleFileUpload(Request $request): JsonResponse
     {
         return $this->handleUpload($request, 'file');
