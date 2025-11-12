@@ -145,7 +145,7 @@ class Images implements AsyncZoneInterface
 
         return $finder;
     }
-    
+
     private static function getImageTypes(): array
     {
         return ['gif', 'png', 'jpg', 'jpeg', 'svg', 'avif', 'webp'];
