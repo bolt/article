@@ -10,6 +10,7 @@ use Bolt\Controller\Backend\Async\AsyncZoneInterface;
 use Bolt\Controller\CsrfTrait;
 use Bolt\Twig\TextExtension;
 use Bolt\Utils\ThumbnailHelper;
+use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Tightenco\Collect\Support\Collection;
 
 #[IsGranted('list_files:files')]
 class Images implements AsyncZoneInterface
