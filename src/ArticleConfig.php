@@ -95,7 +95,7 @@ class ArticleConfig
 
     private function getExtension()
     {
-        return  $this->extension = $this->registry->getExtension(Extension::class);
+        return $this->extension = $this->registry->getExtension(Extension::class);
     }
 
     private function getDefaults(): array
