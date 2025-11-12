@@ -59,8 +59,8 @@ class Upload implements AsyncZoneInterface
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $locationName = $request->query->get('location', '');
-        $path = $request->query->get('path', '');
+        $locationName = $request->query->getString('location');
+        $path = $request->query->getString('path');
 
         $target = $this->config->getPath($locationName, true, $path);
 

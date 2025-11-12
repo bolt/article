@@ -46,8 +46,8 @@ class Images implements AsyncZoneInterface
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $locationName = $request->query->get('location', 'files');
-        $type = $request->query->get('type', '');
+        $locationName = $request->query->getString('location', 'files');
+        $type = $request->query->getString('type');
 
         $path = $this->config->getPath($locationName, true);
 
@@ -56,6 +56,12 @@ class Images implements AsyncZoneInterface
         return new JsonResponse($files);
     }
 
+    /**
+     * @return Collection<int, array{
+     *   thumb: string,
+     *   url: string,
+     * }>
+     */
     private function getImageFilesIndex(string $path, string $type): Collection
     {
         $glob = '*.{' . implode(',', self::getImageTypes()) . '}';
@@ -84,8 +90,8 @@ class Images implements AsyncZoneInterface
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $locationName = $request->query->get('location', 'files');
-        $type = $request->query->get('type', '');
+        $locationName = $request->query->getString('location', 'files');
+        $type = $request->query->getString('type');
 
         $path = $this->config->getPath($locationName, true);
 
@@ -94,6 +100,13 @@ class Images implements AsyncZoneInterface
         return new JsonResponse($files);
     }
 
+    /**
+     * @return Collection<int, array{
+     *   title: string,
+     *   url: string,
+     *   size: string,
+     * }>
+     */
     private function getFilesIndex(string $path, string $type): Collection
     {
         $fileTypes = $this->config->getFileTypes()->toArray();
@@ -126,6 +139,9 @@ class Images implements AsyncZoneInterface
         return $finder;
     }
 
+    /**
+     * @return string[]
+     */
     private static function getImageTypes(): array
     {
         return ['gif', 'png', 'jpg', 'jpeg', 'svg', 'avif', 'webp'];

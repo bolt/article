@@ -6,9 +6,10 @@ namespace Bolt\Article;
 
 use Bolt\Configuration\Config;
 use Bolt\Entity\Content;
-use Bolt\Extension\ExtensionInterface;
 use Bolt\Extension\ExtensionRegistry;
 use Bolt\Storage\Query;
+use Pagerfanta\PagerfantaInterface;
+use RuntimeException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -19,7 +20,10 @@ class ArticleConfig
 {
     private const CACHE_DURATION = 1800; // 30 minutes
 
+    /** @var array<string, null|bool|string|array<string, array<string, bool|string>|string>> */
     private ?array $config = null;
+
+    /** @var array<string, string[]> */
     private ?array $plugins = null;
 
     public function __construct(
@@ -33,6 +37,9 @@ class ArticleConfig
     ) {
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue (complex type)
+     */
     public function getConfig(): array
     {
         if ($this->config) {
@@ -46,6 +53,9 @@ class ArticleConfig
         return $this->config;
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue (complex type)
+     */
     public function getPlugins(): array
     {
         if ($this->plugins) {
@@ -63,11 +73,9 @@ class ArticleConfig
         return $this->plugins;
     }
 
-    private function getExtension(): ?ExtensionInterface
-    {
-        return $this->extension = $this->registry->getExtension(Extension::class);
-    }
-
+    /**
+     * @phpstan-ignore missingType.iterableValue (complex type)
+     */
     private function getDefaults(): array
     {
         $defaults = [
@@ -117,6 +125,9 @@ class ArticleConfig
         return $defaults;
     }
 
+    /**
+     * @return array<string, string[]>
+     */
     private function getDefaultPlugins(): array
     {
         return [
@@ -148,6 +159,9 @@ class ArticleConfig
         ];
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue (complex type)
+     */
     private function getLinks(): array
     {
         return $this->cache->get('editor_insert_links', function (ItemInterface $item): array {
@@ -157,6 +171,9 @@ class ArticleConfig
         });
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue (complex type)
+     */
     private function getLinksHelper(): array
     {
         $amount = 100;
@@ -167,7 +184,11 @@ class ArticleConfig
         ];
         $contentTypes = $this->boltConfig->get('contenttypes')->where('viewless', false)->keys()->implode(',');
 
-        $records = $this->query->getContentForTwig($contentTypes, $params)->setMaxPerPage($amount);
+        /** @var Content[]|PagerfantaInterface<Content> $records */
+        $records = $this->query->getContentForTwig($contentTypes, $params) ?? [];
+        if ($records instanceof PagerfantaInterface) {
+            $records->setMaxPerPage($amount);
+        }
 
         $links = [
             '___' => [
@@ -176,7 +197,6 @@ class ArticleConfig
             ],
         ];
 
-        /** @var Content $record */
         foreach ($records as $record) {
             $extras = $record->getExtras();
 
@@ -193,5 +213,13 @@ class ArticleConfig
                 'items' => array_values($links),
             ],
         ];
+    }
+
+    private function getExtension(): Extension
+    {
+        /** @var Extension|null $extension */
+        $extension = $this->registry->getExtension(Extension::class);
+
+        return $extension ?? throw new RuntimeException('Redactor extension not registered');
     }
 }

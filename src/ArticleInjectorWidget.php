@@ -8,6 +8,7 @@ use Bolt\Widget\BaseWidget;
 use Bolt\Widget\Injector\RequestZone;
 use Bolt\Widget\Injector\Target;
 use Bolt\Widget\TwigAwareInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class ArticleInjectorWidget extends BaseWidget implements TwigAwareInterface
 {
@@ -21,12 +22,15 @@ class ArticleInjectorWidget extends BaseWidget implements TwigAwareInterface
     {
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue (not used here)
+     */
     public function run(array $params = []): ?string
     {
         $request = $this->getExtension()->getRequest();
         // Only produce output when editing or creating a Record, with GET method.
         if (! in_array($request->get('_route'), ['bolt_content_edit', 'bolt_content_new', 'bolt_content_duplicate'], true) ||
-            ($this->getExtension()->getRequest()->getMethod() !== 'GET')) {
+            ($this->getExtension()->getRequest()->getMethod() !== Request::METHOD_GET)) {
             return null;
         }
 
