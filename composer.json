@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2.9"
+        "php": ">=8.2"
     },
     "require-dev": {
         "bolt/core": "^5.0",

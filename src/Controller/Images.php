@@ -14,10 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Tightenco\Collect\Support\Collection;
@@ -29,25 +27,13 @@ class Images implements AsyncZoneInterface
 {
     use CsrfTrait;
 
-    /** @var Config */
-    private $config;
-
-    /** @var Request */
-    private $request;
-
-    /** @var ThumbnailHelper */
-    private $thumbnailHelper;
-
-    /** @var ArticleConfig */
-    private $articleConfig;
-
-    public function __construct(Config $config, CsrfTokenManagerInterface $csrfTokenManager, RequestStack $requestStack, UrlGeneratorInterface $urlGenerator, ThumbnailHelper $thumbnailHelper, ArticleConfig $articleConfig)
-    {
-        $this->config = $config;
+    public function __construct(
+        private readonly Config $config,
+        private readonly ThumbnailHelper $thumbnailHelper,
+        private readonly ArticleConfig $articleConfig,
+        CsrfTokenManagerInterface $csrfTokenManager,
+    ) {
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->request = $requestStack->getCurrentRequest();
-        $this->thumbnailHelper = $thumbnailHelper;
-        $this->articleConfig = $articleConfig;
     }
 
     /**
@@ -57,15 +43,15 @@ class Images implements AsyncZoneInterface
     {
         try {
             $this->validateCsrf('bolt_article');
-        } catch (InvalidCsrfTokenException $e) {
+        } catch (InvalidCsrfTokenException) {
             return new JsonResponse([
                 'error' => true,
                 'message' => 'Invalid CSRF token',
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $locationName = $this->request->query->get('location', 'files');
-        $type = $this->request->query->get('type', '');
+        $locationName = $request->query->get('location', 'files');
+        $type = $request->query->get('type', '');
 
         $path = $this->config->getPath($locationName, true);
 
@@ -97,15 +83,15 @@ class Images implements AsyncZoneInterface
     {
         try {
             $this->validateCsrf('bolt_article');
-        } catch (InvalidCsrfTokenException $e) {
+        } catch (InvalidCsrfTokenException) {
             return new JsonResponse([
                 'error' => true,
                 'message' => 'Invalid CSRF token',
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $locationName = $this->request->query->get('location', 'files');
-        $type = $this->request->query->get('type', '');
+        $locationName = $request->query->get('location', 'files');
+        $type = $request->query->get('type', '');
 
         $path = $this->config->getPath($locationName, true);
 
