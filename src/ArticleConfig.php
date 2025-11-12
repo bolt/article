@@ -6,10 +6,11 @@ namespace Bolt\Article;
 
 use Bolt\Configuration\Config;
 use Bolt\Entity\Content;
+use Bolt\Extension\ExtensionInterface;
 use Bolt\Extension\ExtensionRegistry;
 use Bolt\Storage\Query;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -62,7 +63,7 @@ class ArticleConfig
         return $this->plugins;
     }
 
-    private function getExtension()
+    private function getExtension(): ?ExtensionInterface
     {
         return $this->extension = $this->registry->getExtension(Extension::class);
     }

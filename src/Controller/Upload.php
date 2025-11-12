@@ -52,7 +52,7 @@ class Upload implements AsyncZoneInterface
     {
         try {
             $this->validateCsrf('bolt_article');
-        } catch (InvalidCsrfTokenException $e) {
+        } catch (InvalidCsrfTokenException) {
             return new JsonResponse([
                 'error' => true,
                 'message' => 'Invalid CSRF token',
