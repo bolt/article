@@ -22,7 +22,9 @@ class Extension extends BaseExtension
 
     public function install(): void
     {
+        /** @var string $projectDir */
         $projectDir = $this->getContainer()->getParameter('kernel.project_dir');
+        /** @var string $public */
         $public = $this->getContainer()->getParameter('bolt.public_folder');
 
         $source = dirname(__DIR__) . '/assets/';
