@@ -180,7 +180,7 @@ class ArticleConfig
 
     private function getLinks(): array
     {
-        return $this->cache->get('editor_insert_links', function (ItemInterface $item) {
+        return $this->cache->get('editor_insert_links', function (ItemInterface $item): array {
             $item->expiresAfter(self::CACHE_DURATION);
 
             return $this->getLinksHelper();
