@@ -11,12 +11,9 @@ use Twig\TwigFunction;
 
 class TwigExtension extends AbstractExtension
 {
-    /** @var ArticleConfig */
-    private $articleConfig;
-
-    public function __construct(ArticleConfig $articleConfig)
-    {
-        $this->articleConfig = $articleConfig;
+    public function __construct(
+        private readonly ArticleConfig $articleConfig
+    ) {
     }
 
     public function getFunctions(): array
@@ -26,8 +23,8 @@ class TwigExtension extends AbstractExtension
         ];
 
         return [
-            new TwigFunction('article_settings', [$this, 'articleSettings'], $safe),
-            new TwigFunction('article_includes', [$this, 'articleIncludes'], $safe),
+            new TwigFunction('article_settings', $this->articleSettings(...), $safe),
+            new TwigFunction('article_includes', $this->articleIncludes(...), $safe),
         ];
     }
 
