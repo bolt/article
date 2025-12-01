@@ -51,7 +51,7 @@ class Upload implements AsyncZoneInterface
     private function handleUpload(Request $request, string $type = 'image'): JsonResponse
     {
         try {
-            $this->validateCsrf('bolt_article');
+            $this->validateCsrf($request, 'bolt_article');
         } catch (InvalidCsrfTokenException) {
             return new JsonResponse([
                 'error' => true,
